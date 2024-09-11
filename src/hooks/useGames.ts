@@ -3,6 +3,7 @@
 // import { CanceledError } from "axios";
 
 import useData from "./useData";
+import { Genre } from "./useGenre";
 
 export interface Game {
     id: number;
@@ -23,7 +24,7 @@ export interface Platform {
 //     results: Game[];
 // }
 
-const useGames = () => useData<Game>('/games');
+const useGames = (currentGenre: Genre | null) => useData<Game>('/games', { params: { genres: currentGenre?.id } }, [currentGenre?.id]);
 //     {
 //     const [games, setGames] = useState<Game[]>([]);
 //     const [error, setError] = useState("");
