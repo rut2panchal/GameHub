@@ -24,7 +24,7 @@ export interface Platform {
 //     results: Game[];
 // }
 
-const useGames = (currentGenre: Genre | null) => useData<Game>('/games', { params: { genres: currentGenre?.id } }, [currentGenre?.id]);
+const useGames = (currentGenre: Genre | null, selectedPlatform: Platform | null) => useData<Game>('/games', { params: { genres: currentGenre?.id, platforms: selectedPlatform?.id } }, [currentGenre?.id, selectedPlatform?.id]);
 //     {
 //     const [games, setGames] = useState<Game[]>([]);
 //     const [error, setError] = useState("");
