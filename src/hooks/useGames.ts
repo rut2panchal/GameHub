@@ -2,6 +2,7 @@
 // import apiClient from "../services/api-client";
 // import { CanceledError } from "axios";
 
+import { GameQuery } from "../App";
 import useData from "./useData";
 import { Genre } from "./useGenre";
 
@@ -24,7 +25,14 @@ export interface Platform {
 //     results: Game[];
 // }
 
-const useGames = (currentGenre: Genre | null, selectedPlatform: Platform | null) => useData<Game>('/games', { params: { genres: currentGenre?.id, platforms: selectedPlatform?.id } }, [currentGenre?.id, selectedPlatform?.id]);
+const useGames = (gameQuery: GameQuery) => useData<Game>('/games',
+    {
+        params: {
+            genres: gameQuery.genre?.id,
+            platforms: gameQuery.platform?.id
+        }
+    },
+    [gameQuery]);
 //     {
 //     const [games, setGames] = useState<Game[]>([]);
 //     const [error, setError] = useState("");
